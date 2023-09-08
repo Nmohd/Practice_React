@@ -6,7 +6,7 @@ import { useState } from "react";
 // ];
 
 function App() {
-  const { items, setItems } = useState([]);
+  const [items, setItems] = useState([]);
 
   const handleAddItems = (item) => {
     setItems((itmes) => [...items, item]);
@@ -25,7 +25,7 @@ function App() {
 function Logo() {
   return (
     <>
-      <h1>FAr Away</h1>
+      <h1>FAR Away</h1>
     </>
   );
 }
