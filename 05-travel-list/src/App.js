@@ -1,16 +1,22 @@
 import { useState } from "react";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: true },
-];
+// const initialItems = [
+//   { id: 1, description: "Passports", quantity: 2, packed: false },
+//   { id: 2, description: "Socks", quantity: 12, packed: true },
+// ];
 
 function App() {
+  const { items, setItems } = useState([]);
+
+  const handleAddItems = (item) => {
+    setItems((itmes) => [...items, item]);
+  };
+
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItems={handleAddItems} />
+      <PackingList items={items} />
       <Stats />
     </div>
   );
@@ -23,7 +29,7 @@ function Logo() {
     </>
   );
 }
-function Form() {
+function Form({ onAddItems }) {
   const [description, setdescription] = useState("");
   const [quantity, setQuantity] = useState(5);
 
@@ -33,6 +39,7 @@ function Form() {
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
+    onAddItems(newItem);
 
     setdescription("");
     setQuantity(1);
@@ -58,11 +65,11 @@ function Form() {
     </>
   );
 }
-function PackingList() {
+function PackingList({ items }) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
+        {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}
       </ul>
@@ -85,7 +92,7 @@ function Stats() {
   return (
     <>
       <footer className="stats">
-        <em>You have X items on your list, and you already packd X {"X"}</em>
+        <em>You have X items on your list, and you already packed X {"X"}</em>
       </footer>
     </>
   );
