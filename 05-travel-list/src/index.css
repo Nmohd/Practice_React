@@ -136,3 +136,14 @@ input[type="checkbox"] {
   font-weight: 700;
   padding: 3.2rem 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .mobile {
+    text-align: center;
+    display: block;
+    gap: 0.8rem;
+  }
+  h3 {
+    padding-bottom: 2rem;
+  }
+}
