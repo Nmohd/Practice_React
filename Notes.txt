@@ -30,6 +30,9 @@ custom hooks allow us to reuse state ful logic among different components
 Custom hooks name start with use keyword 
 Optional chaining ?.
 
+_________________________________
+Class components
+__+_+_+_+_____________+________+________________
 
 
 
