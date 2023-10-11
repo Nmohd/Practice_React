@@ -36,5 +36,12 @@ __+_+_+_+_____________+________+________________
 weather app started using class components 
 this keyword is very important
 
+Life cycle methods
+________________________________+________________________________
+Specials methods used to run side effects
+component did mount(immediately as app loads)
+
+
+
 
 
