@@ -44,6 +44,8 @@ Specials methods used to run side effects
 component did update(component re renders) 
 -It gives acces to previos state 
 
+*Component will unmount (cleaning method)
+
 UseEffect solves this issue of spreading of mount and update.
 
 
