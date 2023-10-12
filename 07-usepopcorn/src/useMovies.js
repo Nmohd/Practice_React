@@ -24,7 +24,9 @@ export function useMovies(query) {
           );
 
           if (!res.ok)
-            throw new Error("Something went wrong with fetching movies");
+            throw new Error(
+              "Something went wrong API calls may be reach to finale "
+            );
 
           const data = await res.json();
           if (data.Response === "False") throw new Error("Movie not found");
