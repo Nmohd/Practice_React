@@ -58,6 +58,16 @@ body {
   position: relative;
 }
 
+.box::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.box {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .loader {
   text-align: center;
   text-transform: uppercase;
@@ -139,6 +149,16 @@ body {
   list-style: none;
   padding: 0.8rem 0;
   overflow: scroll;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .list-watched {
