@@ -221,8 +221,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   )?.userRating;
 
   const {
-    title: title,
-    year: year,
+    Title: title,
+    Year: year,
     Poster: poster,
     Runtime: runtime,
     imdbRating,
