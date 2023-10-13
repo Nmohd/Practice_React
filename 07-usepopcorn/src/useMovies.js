@@ -13,13 +13,55 @@ export function useMovies(query) {
 
       const controller = new AbortController();
 
+      // async function fetchMovies() {
+
+      //   try {
+      //     setIsLoading(true);
+      //     setError("");
+
+      //     const res = await fetch(
+      // `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+      //       { signal: controller.signal }
+      //     );
+
+      //     if (!res.ok)
+      //       throw new Error(
+      //         "Something went wrong API calls may be reach to finale "
+      //       );
+
+      //     const data = await res.json();
+      //     if (data.Response === "False") throw new Error("Movie not found");
+
+      //     setMovies(data.Search);
+      //     setError("");
+      //   } catch (err) {
+      //     if (err.name !== "AbortError") {
+      //       console.log(err.message);
+      //       setError(err.message);
+      //     }
+      //   } finally {
+      //     setIsLoading(false);
+      //   }
+      // }
+
       async function fetchMovies() {
+        const options = {
+          method: "GET",
+          headers: {
+            Type: "get-movies-by-title",
+            "X-RapidAPI-Key":
+              "b8e7adb569msh9707d57f483dd0ap1111b4jsn41475e29ec23",
+            "X-RapidAPI-Host": "movies-tv-shows-database.p.rapidapi.com",
+          },
+        };
+
         try {
           setIsLoading(true);
           setError("");
 
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            `https://movies-tv-shows-database.p.rapidapi.com/?title=${query}`,
+            options,
             { signal: controller.signal }
           );
 
@@ -29,9 +71,10 @@ export function useMovies(query) {
             );
 
           const data = await res.json();
-          if (data.Response === "False") throw new Error("Movie not found");
+          console.log(data.movie_results);
+          if (data.movie_results === "False") throw new Error("Movie not found");
 
-          setMovies(data.Search);
+          setMovies(data.movie_results);
           setError("");
         } catch (err) {
           if (err.name !== "AbortError") {

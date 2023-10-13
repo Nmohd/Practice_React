@@ -36,7 +36,7 @@ export default function App() {
     <>
       <NavBar>
         <Search query={query} setQuery={setQuery} />
-        <NumResults movies={movies} />
+        {/* <NumResults movies={movies} /> */}
       </NavBar>
 
       <Main>
@@ -175,6 +175,7 @@ function WatchedBox() {
 */
 
 function MovieList({ movies, onSelectMovie }) {
+  console.log(typeof movies)
   return (
     <ul className="list list-movies">
       {movies?.map((movie) => (
@@ -185,14 +186,15 @@ function MovieList({ movies, onSelectMovie }) {
 }
 
 function Movie({ movie, onSelectMovie }) {
+  console.log(movie)
   return (
     <li onClick={() => onSelectMovie(movie.imdbID)}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
+      {/* <img src={movie.Poster} alt={`${movie.Title} poster`} /> */}
+      <h3>{movie.title}</h3>
       <div>
         <p>
           <span>🗓</span>
-          <span>{movie.Year}</span>
+          <span>{movie.year}</span>
         </p>
       </div>
     </li>
@@ -219,8 +221,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   )?.userRating;
 
   const {
-    Title: title,
-    Year: year,
+    title: title,
+    year: year,
     Poster: poster,
     Runtime: runtime,
     imdbRating,
