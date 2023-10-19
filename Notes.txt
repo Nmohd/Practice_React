@@ -51,7 +51,9 @@ UseEffect solves this issue of spreading of mount and update.
 ++++_____________________+++++________________________________
 React advance Redux started
 ++++_________________________++++______________________________
-
+UseReducer 
+Another powerful way of managing state
+Important to understand Redux
 
 
 
