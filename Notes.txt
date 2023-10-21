@@ -58,7 +58,16 @@ Transforming useState to useReducer
 useReducer takes the reducer function and initial state as arguments
 useReducer takes uses dispatch and action.
 useReducer returns the current state and dispatch 
-useReducer is avoids confusion and puts all logic in one place
+useReducer is avoids confusion and puts all logic in one central place
+State is immutable in React
+
+
+State 
+reducer: Pure funtion (no side effect) that takes current state and action, and returns the next state
+action  : Object that describes how to update state
+dispatch : Function to trigger state updates, by sending actions from event handlers to the reducer.
+
+
 
 
 
