@@ -54,7 +54,7 @@ React advance Redux started
 UseReducer 
 Another powerful way of managing state
 Important to understand Redux
-
+Transforming useState to useReducer
 
 
 
