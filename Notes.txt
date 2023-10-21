@@ -55,7 +55,9 @@ UseReducer
 Another powerful way of managing state
 Important to understand Redux
 Transforming useState to useReducer
-
+useReducer takes the reducer function and initial state as arguments
+useReducer takes uses dispatch and action.
+useReducer returns the current state and dispatch 
 
 
 
