@@ -1,7 +1,7 @@
 import React from "react";
 
 const Options = ({ question, dispatch, answer }) => {
-  console.log(answer);
+//   console.log(answer);
 
   
   const hasAnswered = answer !== null;

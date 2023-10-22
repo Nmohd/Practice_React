@@ -100,9 +100,12 @@ function App() {
   );
 
   useEffect(() => {
-    fetch("http://localhost:9000/questions")
+    // fetch("http://localhost:9000/questions")
+    fetch("https://raw.githubusercontent.com/Nmohd/data/main/questions.json")
       .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
+      .then((data) =>
+        dispatch({ type: "dataReceived", payload: data.questions })
+      )
       .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
 
