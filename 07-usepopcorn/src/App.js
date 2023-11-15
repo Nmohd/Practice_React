@@ -175,7 +175,7 @@ function WatchedBox() {
 */
 
 function MovieList({ movies, onSelectMovie }) {
-  console.log(typeof movies)
+  // console.log(typeof movies)
   return (
     <ul className="list list-movies">
       {movies?.map((movie) => (
