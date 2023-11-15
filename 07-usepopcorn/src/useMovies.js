@@ -33,7 +33,7 @@ export function useMovies(query) {
           const data = await res.json();
           if (data.Response === "False") throw new Error("Movie not found");
 
-          setMovies(data.Search);
+          setMovies(data);
           setError("");
         } catch (err) {
           if (err.name !== "AbortError") {
