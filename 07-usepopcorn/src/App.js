@@ -13,10 +13,11 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const { movies, isLoading, error } = useMovies(query);
+  const [selMovieData, setSelMovieData] = useState([])
 
   const [watched, setWatched] = useLocalStorageState([], "watched");
 
-  function handleSelectMovie(id) {
+  function handleSelectMovie(id,) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
 
@@ -29,7 +30,7 @@ export default function App() {
   }
 
   function handleDeleteWatched(id) {
-    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+    setWatched((watched) => watched.filter((movie) => movie.id !== id));
   }
 
   return (
@@ -179,7 +180,7 @@ function MovieList({ movies, onSelectMovie }) {
   return (
     <ul className="list list-movies">
       {movies?.map((movie) => (
-        <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie} />
+        <Movie movie={movie} key={movie.id} onSelectMovie={onSelectMovie} />
       ))}
     </ul>
   );
@@ -188,8 +189,8 @@ function MovieList({ movies, onSelectMovie }) {
 function Movie({ movie, onSelectMovie }) {
   console.log(movie)
   return (
-    <li onClick={() => onSelectMovie(movie.imdbID)}>
-      {/* <img src={movie.Poster} alt={`${movie.Title} poster`} /> */}
+    <li onClick={() => onSelectMovie(movie.id)}>
+       <img src={movie.posterurl} alt={`${movie.Title} poster`} />
       <h3>{movie.title}</h3>
       <div>
         <p>
@@ -215,9 +216,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [userRating]
   );
 
-  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
+  const isWatched = watched.map((movie) => movie.id).includes(selectedId);
   const watchedUserRating = watched.find(
-    (movie) => movie.imdbID === selectedId
+    (movie) => movie.id === selectedId
   )?.userRating;
 
   const {
@@ -271,21 +272,21 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   useKey("Escape", onCloseMovie);
 
-  useEffect(
-    function () {
-      async function getMovieDetails() {
-        setIsLoading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
-        );
-        const data = await res.json();
-        setMovie(data);
-        setIsLoading(false);
-      }
-      getMovieDetails();
-    },
-    [selectedId]
-  );
+  // useEffect(
+  //   function () {
+  //     async function getMovieDetails() {
+  //       setIsLoading(true);
+  //       const res = await fetch(
+  //         `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+  //       );
+  //       const data = await res.json();
+  //       setMovie(data);
+  //       setIsLoading(false);
+  //     }
+  //     getMovieDetails();
+  //   },
+  //   [selectedId]
+  // );
 
   useEffect(
     function () {
@@ -395,7 +396,7 @@ function WatchedMoviesList({ watched, onDeleteWatched }) {
       {watched.map((movie) => (
         <WatchedMovie
           movie={movie}
-          key={movie.imdbID}
+          key={movie.id}
           onDeleteWatched={onDeleteWatched}
         />
       ))}
@@ -424,7 +425,7 @@ function WatchedMovie({ movie, onDeleteWatched }) {
 
         <button
           className="btn-delete"
-          onClick={() => onDeleteWatched(movie.imdbID)}
+          onClick={() => onDeleteWatched(movie.id)}
         >
           X
         </button>
