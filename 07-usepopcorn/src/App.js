@@ -13,12 +13,26 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const { movies, isLoading, error } = useMovies(query);
-  const [selMovieData, setSelMovieData] = useState([])
+  const [selMovieData, setSelMovieData] = useState({})
 
   const [watched, setWatched] = useLocalStorageState([], "watched");
 
-  function handleSelectMovie(id,) {
+  const {
+    Title: title,
+    Year: year,
+    Poster: posterurl,
+    Runtime: duration,
+    imdbRating,
+    Plot: storyline,
+    Released: releaseDate,
+    Actors: actors,
+    Director: director,
+    Genre: genres,
+  } = selMovieData
+
+  function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
+    setSelMovieData()
   }
 
   function handleCloseMovie() {
@@ -287,6 +301,22 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   //   },
   //   [selectedId]
   // );
+
+    useEffect(
+    function () {
+      async function getMovieDetails() {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+        );
+        const data = await res.json();
+        setMovie(data);
+        setIsLoading(false);
+      }
+      getMovieDetails();
+    },
+    [selectedId]
+  );
 
   useEffect(
     function () {
